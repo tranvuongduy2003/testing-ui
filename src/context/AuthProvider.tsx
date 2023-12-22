@@ -40,7 +40,7 @@ const AuthProvider = ({ children }: any) => {
           profile.role === Role.CUSTOMER
             ? navigate("/")
             : profile.role === Role.ADMIN
-            ? navigate("/admin/dashboard")
+            ? navigate("/admin/settings")
             : profile.role === Role.DELIVERER
             ? navigate("/delivery/order-management")
             : null,

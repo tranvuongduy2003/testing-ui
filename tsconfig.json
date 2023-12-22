@@ -20,6 +20,12 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "server", "src/firebase.ts", "CheckInViewPage.tsx"],
+  "include": [
+    "cypress",
+    "src",
+    "server",
+    "src/firebase.ts",
+    "CheckInViewPage.tsx"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -56,10 +56,13 @@ const LoginPage: React.FunctionComponent = () => {
                   { type: "email", message: "Please enter a valid email" },
                 ]}
               >
-                <Input placeholder="example.email@gmail.com" />
+                <Input test-id="email" placeholder="example.email@gmail.com" />
               </Form.Item>
               <Form.Item name="password" label="Password">
-                <Input.Password placeholder="Enter at least 8+ characters" />
+                <Input.Password
+                  test-id="password"
+                  placeholder="Enter at least 8+ characters"
+                />
               </Form.Item>
               <Form.Item>
                 <Button

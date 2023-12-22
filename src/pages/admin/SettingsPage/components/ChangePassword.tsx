@@ -36,7 +36,10 @@ const ChangePassword: React.FunctionComponent = () => {
           label="Current password"
           rules={[{ required: true, message: "Please enter current password" }]}
         >
-          <Input.Password placeholder="Enter current password" />
+          <Input.Password
+            test-id="oldPassword"
+            placeholder="Enter current password"
+          />
         </Form.Item>
         <Form.Item
           name="newPassword"
@@ -49,7 +52,10 @@ const ChangePassword: React.FunctionComponent = () => {
             },
           ]}
         >
-          <Input.Password placeholder="Enter new password" />
+          <Input.Password
+            test-id="newPassword"
+            placeholder="Enter new password"
+          />
         </Form.Item>
         <Form.Item
           name="confirmedNewPassword"
@@ -68,10 +74,14 @@ const ChangePassword: React.FunctionComponent = () => {
             }),
           ]}
         >
-          <Input.Password placeholder="Confirm new password" />
+          <Input.Password
+            test-id="confirmedNewPassword"
+            placeholder="Confirm new password"
+          />
         </Form.Item>
         <Form.Item className="p-0 m-0">
           <Button
+            test-id="submit"
             loading={isLoading}
             type="primary"
             htmlType="submit"
