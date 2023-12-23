@@ -111,6 +111,7 @@ const PaymentBill: React.FunctionComponent<IPaymentBillProps> = ({
         </div>
         <div>
           <Button
+            checkout-testid="pay"
             loading={isLoading}
             type="primary"
             className="w-full bg-primary"
