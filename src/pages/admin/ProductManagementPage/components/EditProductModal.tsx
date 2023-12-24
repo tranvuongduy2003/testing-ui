@@ -205,6 +205,7 @@ const EditProductModal: React.FunctionComponent<IEditProductModalProps> = ({
         <></>,
         <div className="flex justify-between">
           <Button
+            test-id="btn_delete"
             loading={isLoading}
             onClick={() => handleDeleteProduct()}
             danger
@@ -213,8 +214,11 @@ const EditProductModal: React.FunctionComponent<IEditProductModalProps> = ({
             Delete
           </Button>
           <div className="flex gap-2">
-            <Button onClick={() => setShow(false)}>Cancel</Button>
+            <Button test-id="btn_cancel" onClick={() => setShow(false)}>
+              Cancel
+            </Button>
             <Button
+              test-id="btn_save"
               type="primary"
               loading={isLoading}
               onClick={() => {
@@ -239,7 +243,7 @@ const EditProductModal: React.FunctionComponent<IEditProductModalProps> = ({
           onFinish={(values) => handleEditNewProduct(values)}
         >
           <Form.Item name="name" label="Name" initialValue={product?.name}>
-            <Input placeholder="Product name" />
+            <Input test-id="name" placeholder="Product name" />
           </Form.Item>
           <Row>
             <Col span={24}>
@@ -248,7 +252,11 @@ const EditProductModal: React.FunctionComponent<IEditProductModalProps> = ({
                 label="Description"
                 initialValue={product?.desc}
               >
-                <Input.TextArea rows={3} placeholder="Description" />
+                <Input.TextArea
+                  test-id="des"
+                  rows={3}
+                  placeholder="Description"
+                />
               </Form.Item>
             </Col>
           </Row>
@@ -264,6 +272,7 @@ const EditProductModal: React.FunctionComponent<IEditProductModalProps> = ({
                 }
               >
                 <InputNumber
+                  test-id="importprice"
                   min={0}
                   placeholder="Import price"
                   className="w-full"
@@ -280,7 +289,12 @@ const EditProductModal: React.FunctionComponent<IEditProductModalProps> = ({
                     : null
                 }
               >
-                <InputNumber min={0} placeholder="Price" className="w-full" />
+                <InputNumber
+                  test-id="price"
+                  min={0}
+                  placeholder="Price"
+                  className="w-full"
+                />
               </Form.Item>
             </Col>
             <Col span={8}>
@@ -290,6 +304,7 @@ const EditProductModal: React.FunctionComponent<IEditProductModalProps> = ({
                 initialValue={product?.inventory}
               >
                 <InputNumber
+                  test-id="inventory"
                   min={0}
                   placeholder="Inventory"
                   className="w-full"

@@ -125,12 +125,14 @@ const AddProductModal: React.FunctionComponent<IAddProductModalProps> = ({
 
   return (
     <Modal
+      test-id="md_add"
       title="Add new product"
       centered
       open={show}
       footer={[
         <Button onClick={() => setShow(false)}>Cancel</Button>,
         <Button
+          test-id="create"
           type="primary"
           loading={isLoading}
           onClick={() => {
@@ -156,6 +158,7 @@ const AddProductModal: React.FunctionComponent<IAddProductModalProps> = ({
           <Col span={24}>
             <Form.Item name="desc" label="Description">
               <Input.TextArea
+                test-id="Description"
                 rows={3}
                 autoSize={false}
                 placeholder="Description"
