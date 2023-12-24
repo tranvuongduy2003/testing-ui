@@ -11,6 +11,7 @@ describe("Change password functionality", () => {
 
     cy.get('[test-id="btn_edit"]', { timeout: 2000 }).first().click();
 
+    cy.wait(1500);
     cy.get('[test-id="btn_cancel"]', { timeout: 2000 }).click();
     cy.get('[test-id="btn_edit"]').first().click();
     cy.wait(1500);
@@ -33,7 +34,7 @@ describe("Change password functionality", () => {
     cy.get('[test-id="btn_save"]').click();
 
     cy.contains("desc should not be empty").should("be.visible");
-    cy.wait(1500);
+    cy.wait(3000);
   });
 
   //Blank importprice
