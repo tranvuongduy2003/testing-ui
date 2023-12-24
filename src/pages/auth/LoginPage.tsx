@@ -57,23 +57,22 @@ const LoginPage: React.FunctionComponent = () => {
                 ]}
               >
                 <Input
+                  test-id="email"
                   login-testid="email"
                   placeholder="example.email@gmail.com"
                 />
               </Form.Item>
               <Form.Item name="password" label="Password">
                 <Input.Password
+                  test-id="password"
                   login-testid="password"
                   placeholder="Enter at least 8+ characters"
                 />
               </Form.Item>
               <Form.Item>
                 <Button
-
                   test-id="btn_login"
-
                   login-testid="login"
-
                   loading={isLoading}
                   htmlType="submit"
                   className="w-full mt-8 text-white border-none bg-primary"
