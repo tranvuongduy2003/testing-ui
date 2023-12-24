@@ -79,7 +79,10 @@ const SignupPage: React.FunctionComponent = () => {
               },
             ]}
           >
-            <Input placeholder="Enter your full name" />
+            <Input
+              placeholder="Enter your full name"
+              signup-testid="fullname"
+            />
           </Form.Item>
           <Form.Item
             name="email"
@@ -96,7 +99,10 @@ const SignupPage: React.FunctionComponent = () => {
               },
             ]}
           >
-            <Input placeholder="example.email@gmail.com" />
+            <Input
+              placeholder="example.email@gmail.com"
+              signup-testid="email"
+            />
           </Form.Item>
           <Form.Item
             name="password"
@@ -113,15 +119,19 @@ const SignupPage: React.FunctionComponent = () => {
               },
             ]}
           >
-            <Input.Password placeholder="Enter at least 8+ characters" />
+            <Input.Password
+              placeholder="Enter at least 8+ characters"
+              signup-testid="password"
+            />
           </Form.Item>
           <Form.Item>
             <Button
+              signup-testid="signup"
               loading={isLoading}
               htmlType="submit"
               className="w-full mt-8 text-white border-none bg-primary"
             >
-              Sign in
+              Sign up
             </Button>
           </Form.Item>
           <div className="w-full text-center">

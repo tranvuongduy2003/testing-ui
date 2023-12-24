@@ -193,6 +193,7 @@ const ProductDetailPage: React.FunctionComponent = () => {
                 </Col>
                 <Col>
                   <Button
+                    checkout-testid="checkout"
                     type="primary"
                     className="w-48 bg-primary"
                     size="large"

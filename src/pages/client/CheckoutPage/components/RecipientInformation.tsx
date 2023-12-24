@@ -39,7 +39,7 @@ const RecipientInformation: React.FunctionComponent<
               label="Full name"
               rules={[{ required: true, message: "Full name is missing" }]}
             >
-              <Input />
+              <Input checkout-testid="receiptName" />
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -48,7 +48,7 @@ const RecipientInformation: React.FunctionComponent<
               label="Phone number"
               rules={[{ required: true, message: "Phone number is missing" }]}
             >
-              <Input />
+              <Input checkout-testid="receiptPhone" />
             </Form.Item>
           </Col>
         </Row>
@@ -57,7 +57,7 @@ const RecipientInformation: React.FunctionComponent<
           label="Address"
           rules={[{ required: true, message: "Address is missing" }]}
         >
-          <Input />
+          <Input checkout-testid="receiptAddress" />
         </Form.Item>
       </Form>
     </div>
