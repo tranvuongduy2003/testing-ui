@@ -118,7 +118,10 @@ const ProfileEdit: React.FunctionComponent = () => {
           className="absolute bottom-0 right-0"
         >
           <div className="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer bg-neutral-700">
-            <EditOutlined className="text-base text-white" />
+            <EditOutlined
+              test-id="uploadfile"
+              className="text-base text-white"
+            />
           </div>
         </Upload>
       </Form.Item>
@@ -137,7 +140,9 @@ const ProfileEdit: React.FunctionComponent = () => {
           className="flex justify-between"
         >
           {fullnameWatch || (
-            <span className="text-neutral-400">Not provided</span>
+            <span test-id="notprovide" className="text-neutral-400">
+              Not provided
+            </span>
           )}
         </Typography.Text>
       </Form.Item>
@@ -177,6 +182,7 @@ const ProfileEdit: React.FunctionComponent = () => {
         initialValue={profile?.phone}
       >
         <Typography.Text
+          test-id="phone"
           editable={{
             icon: (
               <span className="text-sm underline text-neutral-700">Edit</span>
@@ -190,6 +196,7 @@ const ProfileEdit: React.FunctionComponent = () => {
       </Form.Item>
       <Form.Item>
         <Button
+          test-id="save"
           loading={isLoading}
           htmlType="submit"
           type="primary"

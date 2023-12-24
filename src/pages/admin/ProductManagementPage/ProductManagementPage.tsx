@@ -54,6 +54,7 @@ const ProductManagementPage: React.FunctionComponent = () => {
         </Col>
         <Col>
           <Button
+            test-id="btn_add"
             type="primary"
             className="bg-primary"
             size="large"

@@ -66,6 +66,7 @@ const LoginPage: React.FunctionComponent = () => {
               </Form.Item>
               <Form.Item>
                 <Button
+                  test-id="btn_login"
                   loading={isLoading}
                   htmlType="submit"
                   className="w-full mt-8 text-white border-none bg-primary"

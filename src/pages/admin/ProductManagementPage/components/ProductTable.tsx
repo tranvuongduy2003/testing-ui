@@ -219,6 +219,7 @@ const ProductTable: React.FunctionComponent = () => {
       width: "5%",
       render: (value, record, index) => (
         <span
+          test-id="btn_edit"
           className="cursor-pointer text-primary"
           onClick={() => {
             setEdittedProduct(record);
