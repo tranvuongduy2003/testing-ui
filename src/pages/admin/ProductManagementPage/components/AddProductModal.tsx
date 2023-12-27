@@ -82,31 +82,39 @@ const AddProductModal: React.FunctionComponent<IAddProductModalProps> = ({
   };
 
   const handleAddNewProduct = async (values: any) => {
-    const { images, categoryId, ...rest } = values;
-    const storage = getStorage(app);
-    const imageURLs = await Promise.all(
-      images.fileList.map(async (image: any) => {
-        const storageRef = ref(
-          storage,
-          `${categoryId === 1 ? "perfume" : "cosmetic"}/${image.name}`
-        );
-        await uploadBytes(storageRef, image.originFileObj);
-        const imageURL = await getDownloadURL(storageRef);
-        return imageURL;
-      })
-    );
-
-    const payload = {
-      ...rest,
-      categoryId: categoryId,
-      images: [...imageURLs],
-      sold: 0,
-    };
-
-    console.log(payload);
-
     setIsLoading(true);
     try {
+      await form.validateFields();
+      const { images, categoryId, ...rest } = values;
+      const storage = getStorage(app);
+
+      const payload = {
+        ...rest,
+        categoryId: categoryId,
+        sold: 0,
+      };
+
+      if (images && images.fileList && images.fileList.length > 0) {
+        const imageURLs = await Promise.all(
+          images.fileList.map(async (image: any) => {
+            const storageRef = ref(
+              storage,
+              `${categoryId === 1 ? "perfume" : "cosmetic"}/${image.name}`
+            );
+            await uploadBytes(storageRef, image.originFileObj);
+            const imageURL = await getDownloadURL(storageRef);
+            return imageURL;
+          })
+        );
+        payload.images = imageURLs;
+      } else {
+        payload.images = [
+          "https://firebasestorage.googleapis.com/v0/b/bnb-uit.appspot.com/o/perfume%2Femily-wang-a5917t2ea8I-unsplash.jpg?alt=media&token=cd4328ea-e8a9-4d65-bbbe-c592a83be1ba&_gl=1*1w8tx8r*_ga*MTAwMDQyNjAyMS4xNjc5ODA4NDE5*_ga_CW55HF8NVT*MTY4NjQ1OTY1Ny43Ni4xLjE2ODY0NjAwNTMuMC4wLjA.",
+          "https://firebasestorage.googleapis.com/v0/b/bnb-uit.appspot.com/o/perfume%2Ffernando-andrade-potCPE_Cw8A-unsplash.jpg?alt=media&token=819272dc-094e-4eac-a131-ddece7056a02&_gl=1*v86ed5*_ga*MTAwMDQyNjAyMS4xNjc5ODA4NDE5*_ga_CW55HF8NVT*MTY4NjQ1OTY1Ny43Ni4xLjE2ODY0NjAwNzcuMC4wLjA.",
+          "https://firebasestorage.googleapis.com/v0/b/bnb-uit.appspot.com/o/perfume%2Fjeroen-den-otter-2b0JeJTEclQ-unsplash.jpg?alt=media&token=d7baf6a5-f5f0-42fd-a569-7fb74800e93c&_gl=1*3pmtqd*_ga*MTAwMDQyNjAyMS4xNjc5ODA4NDE5*_ga_CW55HF8NVT*MTY4NjQ1OTY1Ny43Ni4xLjE2ODY0NjAwOTEuMC4wLjA.",
+        ];
+      }
+
       await createNewProduct(payload);
       setIsLoading(false);
       notification.success({
@@ -132,11 +140,10 @@ const AddProductModal: React.FunctionComponent<IAddProductModalProps> = ({
       footer={[
         <Button onClick={() => setShow(false)}>Cancel</Button>,
         <Button
-          test-id="create"
+          addproduct-testid="create"
           type="primary"
           loading={isLoading}
           onClick={() => {
-            setIsLoading(true);
             form.submit();
           }}
         >
@@ -151,46 +158,112 @@ const AddProductModal: React.FunctionComponent<IAddProductModalProps> = ({
         labelCol={{ span: 24 }}
         onFinish={(values) => handleAddNewProduct(values)}
       >
-        <Form.Item name="name" label="Name">
-          <Input placeholder="Product name" />
+        <Form.Item
+          name="name"
+          label="Name"
+          rules={[
+            {
+              required: true,
+              message: "You must enter product name",
+            },
+          ]}
+        >
+          <Input placeholder="Product name" addproduct-testid="name" />
         </Form.Item>
         <Row>
           <Col span={24}>
-            <Form.Item name="desc" label="Description">
+            <Form.Item
+              name="desc"
+              label="Description"
+              rules={[
+                {
+                  required: true,
+                  message: "You must enter product description",
+                },
+              ]}
+            >
               <Input.TextArea
-                test-id="Description"
                 rows={3}
                 autoSize={false}
                 placeholder="Description"
+                addproduct-testid="desc"
               />
             </Form.Item>
           </Col>
         </Row>
         <Row gutter={18}>
           <Col span={8}>
-            <Form.Item name="importPrice" label="Import price">
+            <Form.Item
+              name="importPrice"
+              label="Import price"
+              rules={[
+                {
+                  required: true,
+                  message: "You must enter product import price",
+                },
+              ]}
+            >
               <InputNumber
                 min={0}
                 placeholder="Import price"
                 className="w-full"
+                addproduct-testid="importPrice"
               />
             </Form.Item>
           </Col>
           <Col span={8}>
-            <Form.Item name="price" label="Price">
-              <InputNumber min={0} placeholder="Price" className="w-full" />
+            <Form.Item
+              name="price"
+              label="Price"
+              rules={[
+                {
+                  required: true,
+                  message: "You must enter product price",
+                },
+              ]}
+            >
+              <InputNumber
+                min={0}
+                placeholder="Price"
+                className="w-full"
+                addproduct-testid="price"
+              />
             </Form.Item>
           </Col>
           <Col span={8}>
-            <Form.Item name="inventory" label="Inventory">
-              <InputNumber min={0} placeholder="Inventory" className="w-full" />
+            <Form.Item
+              name="inventory"
+              label="Inventory"
+              rules={[
+                {
+                  required: true,
+                  message: "You must enter product inventory",
+                },
+              ]}
+            >
+              <InputNumber
+                min={0}
+                placeholder="Inventory"
+                className="w-full"
+                addproduct-testid="inventory"
+              />
             </Form.Item>
           </Col>
         </Row>
         <Row gutter={18}>
           <Col span={12}>
-            <Form.Item name="brandName" label="Brand">
+            <Form.Item
+              name="brandName"
+              label="Brand"
+              rules={[
+                {
+                  required: true,
+                  message: "You must select product brand",
+                },
+              ]}
+            >
               <Select
+                addproduct-testid="brand"
                 placeholder="Brand"
                 dropdownRender={(menu) => (
                   <>
@@ -218,8 +291,21 @@ const AddProductModal: React.FunctionComponent<IAddProductModalProps> = ({
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item name="categoryId" label="Category">
-              <Select options={categoryOptions} placeholder="Category" />
+            <Form.Item
+              name="categoryId"
+              label="Category"
+              rules={[
+                {
+                  required: true,
+                  message: "You must select product category",
+                },
+              ]}
+            >
+              <Select
+                options={categoryOptions}
+                placeholder="Category"
+                addproduct-testid="category"
+              />
             </Form.Item>
           </Col>
         </Row>
